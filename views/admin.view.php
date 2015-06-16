@@ -13,7 +13,7 @@
     
         // template setzen
         public function setTemplate($template = 'default'){
-            $this->template = $this->path . DIRECTORY_SEPARATOR . $template . '.tpl.php';
+            $this->template = $this->path . DIRECTORY_SEPARATOR . 'templates'. DIRECTORY_SEPARATOR . $template . '.tpl.php';
         }
 
         public function parseTemplate(){

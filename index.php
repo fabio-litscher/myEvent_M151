@@ -29,7 +29,7 @@
             <title>myEvent</title>
 
             <!-- CSS -->
-            <link rel="stylesheet" type="text/css" href="./views/template/template.css">
+            <link rel="stylesheet" type="text/css" href="./views/templates/template.css">
 
             <!-- fonts -->
             <link href='http://fonts.googleapis.com/css?family=Lato|Raleway' rel='stylesheet' type='text/css'>
@@ -46,7 +46,7 @@
 <?php
 
     // header includen
-    include './views/template/header.php';
+    include './views/templates/header.php';
 
 
 // Welche Seite soll angezeigt werden
@@ -90,6 +90,6 @@
 
 
     // footer includen
-    include './views/template/footer.php';
+    include './views/templates/footer.php';
 
 ?>
