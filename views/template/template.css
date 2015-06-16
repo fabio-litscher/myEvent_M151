@@ -1,0 +1,159 @@
+body {
+    font: 600 14px/24px "Raleway", "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", Sans-Serif;
+    margin: 0;
+}
+
+h1 {
+    margin: 0 0 30px 0;
+}
+
+h2, h3 {
+    margin: 0;
+}
+
+/* header */
+header {
+    width: 100%;
+}
+
+/* navigation */
+nav {
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+nav ul {
+    background: #48cfad;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+nav ul li:first-child a {
+        padding-left: 0;
+}
+nav ul li:first-child {
+        margin-left: 310px;
+}
+nav ul li {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
+nav ul li:last-child {
+    margin: 0;
+}
+nav ul li a {
+    display: block;
+    background: #48cfad;
+    padding: 17px 20px 17px 20px;
+    color: #fff;
+    font-size: 14px;
+    text-decoration: none;
+    transition: 0.2s linear;
+}
+nav ul li a:hover {
+    background: #37bc9b;
+    margin-left: 25px;
+}
+nav ul li:first-child a:hover {
+    margin-left: 0;
+    padding-left: 25px;
+}
+
+/* unter-menü */
+nav ul li ul {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 240px;
+    border-bottom: 4px solid #48cfad;
+}
+nav ul li ul li {
+    display: block;
+    width: 100%;
+    margin: 0;
+    text-align: left;
+}
+nav ul li ul li a {
+    display: block;
+    background: #3a3a3a;
+    padding: 10px 15px;
+}
+nav ul li ul li a:first-child {
+    background: #3a3a3a;
+    width: auto;
+    border-left: 4px solid transparent;
+    padding: 10px 15px;
+    font-size: 14px;
+}
+nav ul li ul li a:hover {
+    background: #333333;
+    border-left: 4px solid #48cfad;
+}
+
+/* fixed menu left */
+#menuLeft {
+    position: fixed;
+    width: 250px;
+    min-height: 100px;
+    border-right: 2px solid rgb(134, 134, 134);
+}
+
+
+/* footer */
+footer {
+    background: #48cfad;
+    color: #fff;
+    padding: 15px 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+
+
+/* Page */
+.page {
+    margin-left: 250px;
+    padding: 40px 60px 40px 60px;
+}
+
+/* div container in page */
+.container {
+    margin: 0 0 30px 0;
+    padding: 12px;
+    background-color: rgba(216, 216, 216, 0.6);
+}
+
+
+
+
+/* von navigation
+
+body {
+    background: #f7f7f7 url("http://38.media.tumblr.com/c026c2203f47be8d0f3fb81f6c5aee25/tumblr_n2hutxfrNr1tubinno1_1280.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    font-family: "Roboto";
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+body::before {
+    content: '';
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    background: #e74c3c;
+    /* IE Fallback */
+/*
+    background: rgba(67, 74, 84, 0.8);
+    width: 100%;
+    height: 100%;
+}
+*/
