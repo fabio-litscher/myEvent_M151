@@ -57,6 +57,18 @@
         
         echo $newEvent->display();
     }
+    elseif(isset($_POST['saveEditedEvent'])) {
+        include './controller/newEvent.controller.php';
+        $newEvent = new NewEventController();
+        
+        echo $newEvent->display();
+    }
+    elseif(isset($_GET['delEvent'])) {
+        include './controller/delEvent.controller.php';
+        $delEvent = new DelEventController();
+        
+        echo $delEvent->display();
+    }
     elseif(isset($_POST['saveMyProfile'])) {
         include './controller/myProfile.controller.php';
         $myProfile = new MyProfileController();

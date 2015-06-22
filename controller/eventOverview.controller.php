@@ -30,16 +30,16 @@
         
         private function createView() {
             include './model/event.model.php';
+            include './model/user.model.php';
             $event = new EventModel();
+            $user = new userModel();
             
             $allEvents = $event->getAllEvents();
             
-            /*
-            echo "<br><br><br><br>";
-            var_dump($allEvents);
-            die();
-            */
             
+            // filter auf startseite konnte nicht implementiert werden
+            
+            /*
             $this->data = "
             <form method='get' action='#'>
                 <select name='eventFilter' id='eventFilter'>
@@ -56,8 +56,10 @@
                 </select>
                 <input type='submit' name='filtern' value='Filtern' class='filter' />
                 <input type='submit' name='resetFilter' value='Filter zurücksetzen' />
-            </form>
+            </form>";
+            */
             
+            $this->data = "
             <div id='overviewScroller'>";
 
             foreach ($allEvents as $oneEvent) {
@@ -69,7 +71,7 @@
                         <h5 style='float: left; margin-right: 10px;'>Kategorie: </h5><h5 style='float: left; font-weight: normal;  margin-right: 40px;'>$oneEvent->kategorie</h5>
                         <h5 style='float: left; margin-right: 10px;'>Ort: </h5><h5 style='float: left; font-weight: normal;  margin-right: 40px;'>$oneEvent->ort</h5>
                         <h5 style='float: left; margin-right: 10px;'>Datum: </h5><h5 style='float: left; font-weight: normal;  margin-right: 40px;'>$oneEvent->datum</h5>
-                        <h5 style='float: left; margin-right: 10px;'>Ersteller: </h5><h5 style='float: left; font-weight: normal;  margin-right: 40px;'>$oneEvent->ersteller</h5>
+                        <h5 style='float: left; margin-right: 10px;'>Ersteller: </h5><h5 style='float: left; font-weight: normal;  margin-right: 40px;'>" . $user->getUsersUsername($oneEvent->ersteller) . "</h5>
                     </div>
                     <p style='max-height: 3em; overflow: hidden;'>$oneEvent->beschreibung</p>
                 </div>

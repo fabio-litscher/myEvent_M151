@@ -16,6 +16,30 @@
 		}
         
         
+        // vorhandene veranstaltung bearbeiten
+        public function updateEvent($idEvent, $name, $kategorie, $ort, $datum, $beschreibung) {
+            $beschreibung = nl2br($beschreibung);
+            
+            $sql = "UPDATE events SET name = '$name', kategorie = '$kategorie', ort = '$ort', datum = '$datum', beschreibung = '$beschreibung' WHERE idevents = '$idEvent'";
+            
+            if(!mysql_query($sql)) {
+                return false;
+            }else {
+                return true;
+            }
+        }
+        
+        // löscht eine veranstaltung
+        public function deleteEvent($idEvent) {
+            
+			if(!mysql_query("DELETE FROM events WHERE idevents = $idEvent")){
+				return false;				
+			}else{
+				return true;
+			}
+        }
+        
+        
         // Gibt Array mit allen Veranstaltungen zurück
         public function getAllEvents() {
             

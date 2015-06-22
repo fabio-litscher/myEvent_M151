@@ -86,6 +86,14 @@
         }
         
         
+        // username anhand von id zurückgeben
+        public function getUsersUsername($userId) {
+            $result = mysql_query("SELECT username FROM users WHERE idusers = '$userId'");
+            $value = mysql_fetch_object($result);
+            return $value->username;
+        }
+        
+        
         /*Ändert die Rolle 
             0 -> deaktiviert
             1 -> Benutzer

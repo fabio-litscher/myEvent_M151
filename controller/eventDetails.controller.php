@@ -58,7 +58,7 @@
                         </tr>
                         <tr>
                             <td><h3>Ersteller:</h3></td>
-                            <td>$thisEvent->ersteller</td>
+                            <td>" . $userModel->getUsersUsername($thisEvent->ersteller) . "</td>
                         </tr>
                         <tr>
                             <td style='vertical-align: top;'><h3>Beschreibung:</h3></td>
@@ -68,7 +68,7 @@
                         ";
                         if($userModel->getUserTyp($_SESSION['userId']) != 1 or $_SESSION['userId'] == $thisEvent->ersteller) {
                             $this->data = $this->data . "
-                                <a href='?editEvent=$thisEvent->idevents'><input type='submit' value='Veranstaltung bearbeiten' /> </a>
+                                <a href='?nav=new&editEvent=$thisEvent->idevents'><input type='submit' value='Veranstaltung bearbeiten' /> </a>
                                 <a href='?delEvent=$thisEvent->idevents'><input type='submit' value='Veranstaltung löschen' /> </a>
                                 ";
                         }
