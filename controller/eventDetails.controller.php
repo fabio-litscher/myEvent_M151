@@ -8,14 +8,14 @@
         
         public function __construct(){
             // View erstellen
-            include './views/eventDetails.view.php';
-            $this->view = new EventDetailsView();
+            include './views/standard.view.php';
+            $this->view = new StandardView();
         }
 
         public function display(){
             
             // Daten bereitstellen
-            $this->createView();
+            $this->setData();
             
             // Template setzen
             $this->view->setTemplate();
@@ -29,7 +29,7 @@
             return $this->view->parseTemplate();
         }
         
-        private function createView() {
+        private function setData() {
             include './model/event.model.php';
             include './model/user.model.php';
             $event = new EventModel();

@@ -57,6 +57,12 @@
         
         echo $newEvent->display();
     }
+    elseif(isset($_POST['saveMyProfile'])) {
+        include './controller/myProfile.controller.php';
+        $myProfile = new MyProfileController();
+        
+        echo $myProfile->display();
+    }
 
 
 // Navigation abfange
@@ -97,7 +103,10 @@
     }
 
     elseif($_GET['nav'] == 'myProfile') {
-        include './views/myProfile.php';
+        include './controller/myProfile.controller.php';
+        $myProfile = new MyProfileController();
+        
+        echo $myProfile->display();
     }
     elseif($_GET['nav'] == 'logout') {
         session_destroy();

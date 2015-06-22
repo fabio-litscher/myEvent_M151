@@ -14,8 +14,8 @@
             <h1>Willkommen bei myEvent</h1>
             
             <p>
-                Sie können Veranstaltungen erstellen, ändern und die Veranstaltungsübersicht anschauen <br />
-                Über "mein Profil" können Sie Ihre Profildaten ändern.
+                Auf myEvent können Sie Veranstaltungen erstellen und mit anderen Leuten teilen, die Veranstaltungen sind alle öffentlich, somit sehen Sie auch alle Veranstaltungen von den andern Benutzer.<br />
+                Über "mein Profil" können Sie Ihre Profildaten jederzeit ändern.
             </p>
             
         </div>

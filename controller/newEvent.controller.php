@@ -8,8 +8,8 @@
         
         public function __construct(){
             // View erstellen
-            include './views/newEvent.view.php';
-            $this->view = new NewEventView();
+            include './views/standard.view.php';
+            $this->view = new StandardView();
         }
 
         public function display(){

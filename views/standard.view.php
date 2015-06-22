@@ -1,6 +1,6 @@
 <?php
 
-    class EventDetailsView {
+    class StandardView {
         
         private $path = 'views';
         private $template;
@@ -31,5 +31,6 @@
         }
         
     }
+
 
 ?>

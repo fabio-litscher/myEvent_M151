@@ -78,6 +78,14 @@
         }
         
         
+        // gibt die benutzerdetails zurück
+        public function getUserDetails($userId) {
+            $result = mysql_query("SELECT * FROM users WHERE idusers = '$userId'");
+            $value = mysql_fetch_object($result);
+            return $value;
+        }
+        
+        
         /*Ändert die Rolle 
             0 -> deaktiviert
             1 -> Benutzer
