@@ -29,7 +29,7 @@
 		}
         
         // Tabelle Users erstellen
-        public function createTableUsers() {	
+        private function createTableUsers() {	
 			mysql_select_db($this->dbName);		
             
             $sql="CREATE TABLE IF NOT EXISTS `users` (
@@ -68,7 +68,7 @@
 		}
         
         // Tabelle Events erstellen
-        public function createTableEvents(){		
+        private function createTableEvents(){		
 			mysql_select_db($this->dbName);		
             
             $sql="CREATE TABLE IF NOT EXISTS `events` (
@@ -78,8 +78,9 @@
               `ort` varchar(45) DEFAULT NULL,
               `datum` date DEFAULT NULL,
               `beschreibung` text(200) DEFAULT NULL,
-              `ersteller` varchar(20),
-              PRIMARY KEY (`idevents`)
+              `ersteller` int,
+              PRIMARY KEY (`idevents`),
+              FOREIGN KEY (ersteller) REFERENCES Users(idusers)
             )";
                         
 			

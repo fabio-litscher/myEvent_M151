@@ -1,6 +1,6 @@
 <?php
 
-    class AdminView {
+    class NewEventView {
         
         private $path = 'views';
         private $template;

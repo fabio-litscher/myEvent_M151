@@ -10,11 +10,14 @@
 
         <h1><?php echo $this->content['title']; ?></h1>
 
+        <?php echo $this->content['content']; ?>
+        
         <!-- einzelner Container -->
+        <!--
         <div class='container'>
-            <?php echo $this->content['content']; ?>
         </div>
-
+        -->
+        
     </div>
 
 </body>

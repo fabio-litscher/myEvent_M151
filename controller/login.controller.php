@@ -8,6 +8,7 @@
             $md5password = md5($password);
 
             $_SESSION['username'] = $username;
+            $_SESSION['userId'] = $userModel->getUsersId($username);
 
             $auth = $userModel->checkLogin($username, $md5password);
 

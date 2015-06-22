@@ -1,5 +1,5 @@
 <?php	
-	class adminModel{
+	class AdminModel{
         
         public function getAllUsers(){
             

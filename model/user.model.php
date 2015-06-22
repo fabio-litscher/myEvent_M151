@@ -3,12 +3,6 @@
 
         //Überprüft ob das Login korrekt ist
 		public function checkLogin($username, $md5Password){
-            /*$sqlClass = NEW mySql();
-            $sqlClass -> connect();
-            
-			mysql_select_db($this->dbName);
-            */
-            
             
             $result = mysql_query("SELECT * FROM users");
 
@@ -57,16 +51,31 @@
         
         // Überprüft ob Benutzer bereits existiert
 		public function findUser($username){
+            $result = mysql_query("SELECT idusers FROM users WHERE username = '$username'");	            
+            $value = mysql_fetch_object($result);
             
-			$result = mysql_query("SELECT * FROM users");	            
-
-			while($row = mysql_fetch_array($result)) {				                
-				if($row['username'] == $username){
-					 return false;
-				}
-			 }
-			 return true;
+            if($value == "") return false;
+            else return true;
 		}
+        
+        // gibt die ID eines benutzers zurück
+        public function getUsersId($username) {
+            $result = mysql_query("SELECT idusers FROM users WHERE username = '$username'");	            
+            $value = mysql_fetch_object($result);
+            
+            if($value != "") return $value->idusers;
+            else return false;
+        }
+        
+        
+        // gibt die ID eines benutzers zurück
+        public function getUserTyp($iduser) {
+            $result = mysql_query("SELECT typ FROM users WHERE idusers = '$iduser'");	            
+            $value = mysql_fetch_object($result);
+            
+            if($value != "") return $value->typ;
+            else return false;
+        }
         
         
         /*Ändert die Rolle 

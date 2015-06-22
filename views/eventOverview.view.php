@@ -1,6 +1,6 @@
 <?php
 
-    class AdminView {
+    class EventOverviewView {
         
         private $path = 'views';
         private $template;
@@ -31,6 +31,5 @@
         }
         
     }
-
 
 ?>

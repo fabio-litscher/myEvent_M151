@@ -46,7 +46,7 @@ nav ul li:last-child {
 nav ul li a {
     display: block;
     background: #48cfad;
-    padding: 17px 20px 17px 20px;
+    padding: 17px 17px 17px 17px;
     color: #fff;
     font-size: 14px;
     text-decoration: none;
@@ -54,11 +54,11 @@ nav ul li a {
 }
 nav ul li a:hover {
     background: #37bc9b;
-    margin-left: 25px;
+    margin-left: 15px;
 }
 nav ul li:first-child a:hover {
     margin-left: 0;
-    padding-left: 25px;
+    padding-left: 15px;
 }
 
 /* unter-menü */
@@ -96,7 +96,7 @@ nav ul li ul li a:hover {
 #menuLeft {
     position: fixed;
     width: 220px;
-    padding: 24px 0 0 30px;
+    padding: 24px 10px 0 20px;
     margin-top: 58px;
     min-height: 100px;
     border-right: 2px solid rgb(134, 134, 134);
@@ -113,6 +113,13 @@ footer {
     left: 0;
     right: 0;
     text-align: center;
+}
+a.mailto {
+    color: white;
+    text-decoration: none;
+}
+a.mailto:hover {
+    color: rgb(222, 222, 222);
 }
 
 
@@ -132,31 +139,11 @@ footer {
 
 
 
-
-/* von navigation
-
-body {
-    background: #f7f7f7 url("http://38.media.tumblr.com/c026c2203f47be8d0f3fb81f6c5aee25/tumblr_n2hutxfrNr1tubinno1_1280.jpg") no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    font-family: "Roboto";
-    font-size: 14px;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+/* link von eventOverview */
+.detailLink {
+    color: black;
+    text-decoration: none;
 }
-body::before {
-    content: '';
-    position: fixed;
-    z-index: -1;
-    top: 0;
-    left: 0;
-    background: #e74c3c;
-    /* IE Fallback */
-/*
-    background: rgba(67, 74, 84, 0.8);
-    width: 100%;
-    height: 100%;
+.detailLink:hover {
+    color: rgb(149, 149, 149);
 }
-*/

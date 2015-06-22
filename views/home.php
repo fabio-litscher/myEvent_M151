@@ -4,20 +4,19 @@
 
         <!-- Menu left -->
         <div id="menuLeft">
-
+            Welcome to myEvent!
         </div>
         
         
         <!-- Ganze Seite -->
         <div class="page">
             
-            <h1>Home</h1>
+            <h1>Willkommen bei myEvent</h1>
             
-            <!-- einzelner Container -->
-            <div class="container">
-                <h2>Settings</h2>
-            </div>
-            
+            <p>
+                Sie können Veranstaltungen erstellen, ändern und die Veranstaltungsübersicht anschauen <br />
+                Über "mein Profil" können Sie Ihre Profildaten ändern.
+            </p>
             
         </div>
         

@@ -7,7 +7,8 @@
     $dbController = new dbController();
     $dbController->checkDatabaseExists();
 
-    // login getätigt
+
+    // login getätigt (auf login geklickt)
     if(isset($_POST['login'])) {
         include './controller/login.controller.php';
         $loginController = new loginController();
@@ -16,6 +17,7 @@
 
     // benutzer eingeloggt?
     if(!isset($_SESSION['username'])) {
+        // Variable $nav setzen, dass unten dann auf die Loginseite navigiert wird, falls der Benutzer nicht eingeloggt ist
         $nav = 'login';
     }
 ?>
@@ -48,10 +50,18 @@
     // header includen
     include './views/templates/header.php';
 
+// Formulare abfangen
+    if(isset($_POST['saveNewEvent'])) {
+        include './controller/newEvent.controller.php';
+        $newEvent = new NewEventController();
+        
+        echo $newEvent->display();
+    }
 
-// Welche Seite soll angezeigt werden
+
+// Navigation abfange
     // wurde die variable $nav irgendwo speziell gesetzt?
-    if(isset($nav)) include "./views/$nav.php";
+    elseif(isset($nav)) include "./views/$nav.php";
     
     // sonst auf geter gehen
     elseif(!isset($_GET['nav'])) {
@@ -62,18 +72,28 @@
         include './views/home.php';
     }
     elseif($_GET['nav'] == 'overview') {
-        include './views/eventOverview.php';
+        include './controller/eventOverview.controller.php';
+        $eventOverview = new EventOverviewController();
+        
+        echo $eventOverview->display();
+    }
+    elseif($_GET['nav'] == 'eventdetails') {
+        include './controller/eventDetails.controller.php';
+        $eventDetails = new EventDetailsController();
+        
+        echo $eventDetails->display();
     }
     elseif($_GET['nav'] == 'new') {
-        include './views/newEvent.php';
+        include './controller/newEvent.controller.php';
+        $newEvent = new NewEventController();
+        
+        echo $newEvent->display();
     }
-
     elseif($_GET['nav'] == 'admin') {
         include './controller/admin.controller.php';
-        $admin = new adminController();
+        $admin = new AdminController();
         
         echo $admin->display();
-        
     }
 
     elseif($_GET['nav'] == 'myProfile') {
