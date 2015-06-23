@@ -31,7 +31,7 @@
             $sql = "INSERT INTO users (username, passwort, email) 
             VALUES ('$username', '$passwort', '$email')";
 			
-			if($this->findUser($username)) {
+			if(!$this->findUser($username)) {
 				if(!mysql_query($sql)) {
 					echo "Error insert Users: " . mysql_error($this->con). "<br>";;
 				}
@@ -44,7 +44,7 @@
 					return true;
 				}
 			}else{
-                echo "Fehler bei der Registrierung. Kontaktieren Sie Ihren Systemadministrator";
+                echo "Fehler bei der Registrierung.";
 				return false;
 			}
 		}
