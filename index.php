@@ -12,7 +12,14 @@
     if(isset($_POST['login'])) {
         include './controller/login.controller.php';
         $loginController = new loginController();
+        
         $nav = $loginController->checkLogin($_POST['username'], $_POST['password']);
+    }
+    elseif(isset($_POST['register'])) {
+        include './controller/login.controller.php';
+        $loginController = new loginController();
+        
+        $nav = $loginController->registerUser($_POST['username'], $_POST['email'], $_POST['password'], $_POST['password2']);
     }
 
     // benutzer eingeloggt?
@@ -69,6 +76,18 @@
         
         echo $delEvent->display();
     }
+    elseif(isset($_POST['del_user'])) {
+        include './controller/admin.controller.php';
+        $admin = new AdminController();
+        
+        echo $admin->display();
+    }
+    elseif(isset($_POST['save_user'])) {
+        include './controller/admin.controller.php';
+        $admin = new AdminController();
+        
+        echo $admin->display();
+    }
     elseif(isset($_POST['saveMyProfile'])) {
         include './controller/myProfile.controller.php';
         $myProfile = new MyProfileController();
@@ -122,6 +141,7 @@
     }
     elseif($_GET['nav'] == 'logout') {
         session_destroy();
+        $nav = home;
         include './views/login.php';
     }
     else {

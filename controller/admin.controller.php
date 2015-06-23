@@ -18,7 +18,12 @@
             if(!$this->checkUserAccess($_SESSION['userId'])) {
                 $this->title = "Zugriff verweigert!";
                 $this->data = "Da Sie kein Administrator sind können Sie nicht auf die Adminoberfläche zugreifen.";
-            } else {
+            }elseif(isset($_POST['del_user'])) {
+                $this->delUsers();
+            }elseif(isset($_POST['save_user'])) {
+                $this->saveUsers();
+            }
+            else {
                 $this->title = "Adminbereich";
                 $this->getUsertable();
             }
@@ -43,6 +48,47 @@
             else return true;
         }
         
+        
+        // löscht benutzer
+        private function delUsers() {
+            include './model/admin.model.php';
+            $admin = new AdminModel();
+            $userModel = new userModel();
+
+            $allUsers = $admin->getAllUsers();
+            
+            foreach ($allUsers as $oneUser) {
+                if(isset($_POST["chk_$oneUser->idusers"])) {
+                    $userModel->deleteUser($oneUser->idusers);
+                }
+            }
+            
+            $this->title = "Löschen erfolgreich";
+            $this->data = "Das Löschen der gewünschten Benutzer war erfolgreich.";
+        }
+        
+        
+        
+        // ändert die rollen der gewünschten benutzer
+        private function saveUsers() {
+            include './model/admin.model.php';
+            $admin = new AdminModel();
+            $userModel = new userModel();
+
+            $allUsers = $admin->getAllUsers();
+            
+            foreach ($allUsers as $oneUser) {
+                if ($oneUser->username != "superadmin") {
+                    $userModel->changeTyp($oneUser->idusers, $_POST["typ_$oneUser->idusers"]);
+                }
+            }
+            
+            $this->title = "Speichern erfolgreich";
+            $this->data = "Das Ändern der gewünschten Benutzer war erfolgreich.";
+        }
+        
+        
+        
         // Daten holen und entsprechend formatieren
         private function getUsertable() {
             include './model/admin.model.php';
@@ -51,7 +97,7 @@
             $allUsers = $admin->getAllUsers();
             
             $this->data = "
-                <form action='' method=''>
+                <form action='' method='post'>
 
                     <input type='submit' value='Speichern' name='save_user' style='float: right; margin-bottom: 20px;'>
                     <input type='submit' value='Löschen' name='del_user' style='float: right; margin-right: 10px; margin-bottom: 20px;'>
@@ -69,7 +115,7 @@
                                     $this->data = $this->data.
                                         "<tr>
                                             <td>
-                                                <input type='checkbox' />
+                                                <input type='checkbox' name='chk_$oneUser->idusers' />
                                             </td>
                                             <td>
                                                 $oneUser->username
@@ -78,7 +124,7 @@
                                                 $oneUser->email
                                             </td>
                                             <td>
-                                                <select name='typ_$oneUser->username'>
+                                                <select name='typ_$oneUser->idusers'>
                                                     <option value='0'"; if($oneUser->typ == 0) {$this->data = $this->data."selected";} $this->data = $this->data. ">deaktiviert</option>
                                                     <option value='1'"; if($oneUser->typ == 1) {$this->data = $this->data."selected";} $this->data = $this->data. ">Benutzer</option>
                                                     <option value='2'"; if($oneUser->typ == 2) {$this->data = $this->data."selected";} $this->data = $this->data. ">Admin</option>

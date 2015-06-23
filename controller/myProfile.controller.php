@@ -19,6 +19,7 @@
                 $this->saveMyProfile();
             } else {
                 $this->setData();
+                $this->title = "Mein Profil";
             }
             
             // Template setzen
@@ -26,7 +27,7 @@
             
             
             // Daten übergeben an view
-            $this->view->setContent("title", "Mein Profil");
+            $this->view->setContent("title", $this->title);
             $this->view->setContent("content", $this->data);
             $this->view->setContent("menuLeft", "Hier können Sie Ihr Profil bearbeiten und die einzelnen Angaben ändern.");
 
@@ -83,17 +84,65 @@
         
         
         private function saveMyProfile() {
+            include './model/admin.model.php';
             include './model/user.model.php';
-            $userModel = new UserModel();
-            
-            // überprüfen was geändert wurde
-            
-            // wenn pw geändert wurde, altes passwort überprüfen
+            $admin = new AdminModel();
+            $user = new UserModel();
             
             
-            $this->data = "
-                <p>Ihre Änderungen wurden erfolgreich übernommen!</p>
-            ";
+            // werden überschrieben wenn es fehler gibt
+            $this->title = "Speichern erfolgreich";
+            $this->data = "Ihre Daten wurden erfolgreich angepasst";
+            
+            
+            $allUsers = $admin->getAllUsers();
+            
+            
+            $username = $_SESSION['username'];
+		
+            $abfrage = "SELECT * FROM users";
+            $ergebnis = mysql_query($abfrage);
+            foreach($allUsers as $oneUser) {
+                if($oneUser->username == $username){
+                    $id = $oneUser->idusers;
+                    $pw = $oneUser->passwort;
+                }
+            }
+
+            if($_POST['benutzername_neu'] != ""){
+                $typ = "username";
+                $newUsername = $_POST['benutzername_neu'];
+                $user->changeValue($id, $typ, $newUsername);
+
+                // Session anpassen, dass bereits der neue Benutzername angezeigt wird
+                $_SESSION['username'] = $newUsername;
+                return;
+            }
+
+            if($_POST['email'] != ""){
+                $typ = "email";
+                $newValue = $_POST['email'];
+                $user->changeValue($id, $typ, $newValue);
+            }
+            
+
+            if($_POST['passwort_neu'] != ""){
+                if($_POST['passwort_wiederholen'] == $_POST['passwort_neu']){
+                    if(md5($_POST['passwort_alt']) == $pw) {
+                        $newPassword = $_POST['passwort_neu'];
+                        $user->changePasswort($id, $newPassword);
+                    }
+                    else {
+                        $this->title = "Passwort inkorrekt";
+                        $this->data = "Das alte Passwort ist falsch.";
+                    }
+                }
+                else {
+                    $this->title = "Fehler";
+                    $this->data = "Die beiden neuen Passwörter stimmen nicht überein.";
+                }
+            }
+            
         }
         
     }

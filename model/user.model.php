@@ -16,12 +16,12 @@
                         if($row['typ'] != 0){                            
                             return true;
                         }else{
-                            return false;   
+                            return "deactivated";   
                         }
-                     }
+                     } else return "wrongPw";
                  }
             }
-            return false;
+            return "noAccount";
         }
         
         
@@ -48,6 +48,18 @@
 				return false;
 			}
 		}
+        
+        
+        //Löscht ein Benutzer
+		public function deleteUser($id){	
+			if(!mysql_query("DELETE FROM users WHERE idusers = $id")){
+				echo "Error delete User: " . mysql_error($this->con). "<br>";
+				return false;				
+			} else {
+				return true;
+			}
+		}
+        
         
         // Überprüft ob Benutzer bereits existiert
 		public function findUser($username){
@@ -111,6 +123,67 @@
 				return true;
 			}
         }
+        
+        // ändert das passwort eines benutzers
+        public function changePasswort($id, $newPassword){
+			$sql = "UPDATE users SET passwort = md5(\"$newPassword\") WHERE idusers = $id";
+			
+			$result = mysql_query($sql);
+			
+			if($result === FALSE) {
+					echo "Error update users (changePasswort)<br>";	
+                    die(mysql_error()); // TODO: better error handling
+            }
+		}
+        
+        // ändert ein beliebiges Feld eines benutzers
+        public function changeValue($id, $typ, $neuerWert) {
+			$sql = "UPDATE users SET $typ = '$neuerWert' WHERE idusers = '$id'";
+			
+			$result = mysql_query($sql);
+			
+			if($result === FALSE) {
+					echo "Error update users (changeUsername)<br>";	
+                    die(mysql_error()); // TODO: better error handling
+             }
+		}
+        
+        
+        // überprüft die registrierung
+        public function checkRegister($username, $email, $passwort1, $passwort2){
+            if($username == "" || $email == "" || $passwort1 == "" || $passwort2 == ""){                
+                return "emptyFields";
+            }else if($passwort1 != $passwort2){                             
+                return "pwNotSame"; 
+            }else{
+
+                $result = mysql_query("SELECT * FROM users");
+
+                if($result === FALSE) {
+                    die(mysql_error()); // TODO: better error handling
+                }
+
+
+                while($row = mysql_fetch_array($result)) {
+                    if($row['username'] == $username){
+                         return "userExists";
+                     }
+                }
+
+                $sql = "INSERT INTO users (username, passwort, email) VALUES ('$username', md5('$passwort1'), '$email')";
+                $sql = mysql_query($sql);
+                if ($sql == true) {
+                    echo "Hallo $username, Ihre Anmeldung war erfolgreich. Bitte warten Sie bis Sie von einem Administrator freigeschaltet wurden.";
+                    die();
+                }
+                else {
+                    return "sqlError";
+                    die();
+                }
+            }
+            return true;
+        }
+        
     }
 
 ?>
