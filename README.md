@@ -1,2 +1,2 @@
 # myEvent_M151
-school web-project
+school. web-project. php. simple. event-mgmt.
